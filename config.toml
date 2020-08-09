@@ -1,5 +1,5 @@
 baseURL = "http://example.org/"
 languageCode = "es"
 title = "VUE"
-theme = "cupper-hugo-theme"
+theme = "zen"
 
