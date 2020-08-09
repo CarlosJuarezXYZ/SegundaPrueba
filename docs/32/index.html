@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>4 Directivas v-for con arreglos &middot; VUE</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://carlos015programacion.github.io/SegundaPrueba/css/concated.min.css" rel="stylesheet">
+  
+  
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="nav-text">VUE</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">4 Directivas v-for con arreglos</h1>
+          <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
+        </header>
+        
+        
+        <p>vimos en el concepto anterior como podemos condicionar que aparezca o no un elemento HTML dependiendo del estado de una propiedad del modelo de datos. Ahora veremos como podemos mostrar datos almacenados en el modelo en un arreglo.</p>
+<p>Para mostrar datos almacenados en un arreglo en el modelo debemos iterar la estructura de datos e imprimir uno a uno dichos elementos mediante la directiva v-for.</p>
+<h1 id="problema">Problema</h1>
+<p>Definir en el modelo de datos un vector con nombres de lenguajes de programación. Mostrar dichos datos en una lista no ordenada de HTML.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;
+    &lt;<span style="color:#f92672">ul</span>&gt;
+      &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lenguaje in lenguajes&#34;</span>&gt;{{lenguaje}}&lt;/<span style="color:#f92672">li</span>&gt;
+    &lt;/<span style="color:#f92672">ul</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;   
+  &lt;<span style="color:#f92672">script</span>&gt;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+      <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{ 
+        <span style="color:#a6e22e">lenguajes</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;C++&#39;</span>, <span style="color:#e6db74">&#39;C#&#39;</span>, <span style="color:#e6db74">&#39;Java&#39;</span>, <span style="color:#e6db74">&#39;Ruby&#39;</span>, <span style="color:#e6db74">&#39;Kotlin&#39;</span>]
+      }
+    })
+  &lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><pre><code>* C
+* C++
+* C#
+* Java
+* Ruby
+* Kotlin
+
+</code></pre><p>La directiva v-for itera sobre la propiedad &lsquo;lenguajes&rsquo; definida en el modelo de datos y almacena en cada vuelta un elemento del vector en la variable &lsquo;lenguaje&rsquo;, la misma se muestra mediante interpolación {{lenguaje}}:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+    &lt;<span style="color:#f92672">ul</span>&gt;
+      &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lenguaje in lenguajes&#34;</span>&gt;{{lenguaje}}&lt;/<span style="color:#f92672">li</span>&gt;
+    &lt;/<span style="color:#f92672">ul</span>&gt;
+    
+</code></pre></div><p>El vector está creado en el modelo definido en el objeto app de la clase Vue:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+      <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{ 
+        <span style="color:#a6e22e">lenguajes</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;C++&#39;</span>, <span style="color:#e6db74">&#39;C#&#39;</span>, <span style="color:#e6db74">&#39;Java&#39;</span>, <span style="color:#e6db74">&#39;Ruby&#39;</span>, <span style="color:#e6db74">&#39;Kotlin&#39;</span>]
+      }
+    })
+
+</code></pre></div><p>Tengamos en cuenta que es un ejemplo ya que si siempre tenemos que mostrar dichos lenguajes en la lista HTML sería mejor generar HTML puro:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">ul</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;C&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;C++&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;C#&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;Java&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;Ruby&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;Kotlin&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;/<span style="color:#f92672">ul</span>&gt;
+
+</code></pre></div><p>Pero en muchas situaciones dicho vector podría llegar de una petición AJAX por ejemplo, o de eventos del operador sobre la página.</p>
+
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/31/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">5 Directivas v-for con arreglos de objetos literales</h2>
+    <p class="card-text">Veremos una variante cuando trabajamos con la directiva v-for y debemos iterar un arreglo con objetos para acceder a todos sus elementos.
+Problema Se tiene el siguiente arreglo con objetos literales que representan artículos:
+articulos: [{ codigo: 1, descripcion: &#39;papas&#39;, precio: 12.52 },{ codigo: 2, descripcion: &#39;naranjas&#39;, precio: 21 },{ codigo: 3, descripcion: &#39;peras&#39;, precio: 18.20 }] Mostrar en una tabla HTML los datos almacenados en el arreglo.
+&lt;!doctype html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Prueba Vue&lt;/title&gt; &lt;meta charset=&#34;utf-8&#34;&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;aplicacion&#34;&gt; &lt;table border=&#34;1&#34;&gt; &lt;tr&gt;&lt;td&gt;Código&lt;/td&gt;&lt;td&gt;Descripción&lt;/td&gt;&lt;td&gt;Precio&lt;/td&gt;&lt;/tr&gt; &lt;template v-for=&#34;articulo in articulos&#34;&gt; &lt;tr&gt; &lt;td&gt;{{articulo.</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-08-07 87:00">Aug 7, 2020</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/" class="card home-card" style="background-image: url( https://carlos015programacion.github.io/SegundaPrueba/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://carlos015programacion.github.io/SegundaPrueba/js/core.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VUE</title>
+    <link>https://carlos015programacion.github.io/SegundaPrueba/</link>
+    <description>Recent content on VUE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    
+        <atom:link href="https://carlos015programacion.github.io/SegundaPrueba/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>21 Componentes:definición de métodos y modelo de datos</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/15/</link>
+      <pubDate>Fri, 07 Aug 2020 20:28:24 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/15/</guid>
+      <description>Igual que las instancias de la clase Vue, las componentes pueden tener una propiedad methods y data.
+En la propiedad methods definimos todas las funciones y en la propiedad data a diferencia de la instancia Vue debemos plantear una función que retorne un objeto literal con todos los atributos de la componente (es importante recordar que la mecánica es distinta a los objetos Vue)
+Problema Plantear una componente llamada &amp;lsquo;selector-numerico&amp;rsquo; con tres propiedades &amp;lsquo;valor&amp;rsquo;,&amp;lsquo;minimo&amp;rsquo; y &amp;lsquo;maximo&amp;rsquo;.</description>
+    </item><item>
+      <title>22 Componentes:ubicación del valor de la propiedad template</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/14/</link>
+      <pubDate>Fri, 07 Aug 2020 20:28:20 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/14/</guid>
+      <description>Hasta ahora hemos visto que toda componente debe definir la propiedad &amp;lsquo;template&amp;rsquo; con los elementos HTML que representan la interfaz visual de la misma.
+Normalmente como dicho valor requiere varias líneas lo más común es utilizar las comillas oblicuas ..... que nos permiten crear string de varias líneas.
+Si tenemos una componente que requiere un template muy largo la metodología de definir el valor del template directamente luego de la propiedad puede ser un poco engorroso.</description>
+    </item><item>
+      <title>23 Componentes:slot</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/13/</link>
+      <pubDate>Fri, 07 Aug 2020 20:28:16 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/13/</guid>
+      <description>La interfaz de una componente la podemos transformar mediante datos que le enviamos a sus propiedades y también veremos ahora que el contenido del &amp;lsquo;template&amp;rsquo; puede ser modificado mediante el concepto de &amp;lsquo;slot&amp;rsquo;.
+Los slot (espacio) se los declara dentro del template de la componente y son espacios que pueden ser redefinidos cuando definimos una componente en el HTML.
+Problema Crear una componente que muestre dos botones &amp;lsquo;confirmar&amp;rsquo;, &amp;lsquo;cancelar&amp;rsquo; y un hipervínculo.</description>
+    </item><item>
+      <title>24 Componentes:slot-scope</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/12/</link>
+      <pubDate>Fri, 07 Aug 2020 20:28:13 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/12/</guid>
+      <description>Hay otra variante de slot que nos permiten comunicar datos desde la componente a donde la definimos a la misma.
+Con esta variante podemos crear una componente que tenga una forma de mostrar datos por defecto, pero si se define un slot-scope luego la forma de mostrar los datos queda como responsabilidad fuera de la componente.
+Problema Crear una componente llamada &amp;lsquo;dias-semana&amp;rsquo;. Por defecto muestra los días uno al lado del otro separados por un guión.</description>
+    </item><item>
+      <title>25 Componentes:eventos propios y captura en la instancia Vue</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/11/</link>
+      <pubDate>Fri, 07 Aug 2020 20:28:09 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/11/</guid>
+      <description>Una parte muy importante es la posibilidad de emitir eventos en la componente y luego poderlos capturar en la instancia Vue.
+En la componente debemos llamar a $emit y pasar el nombre del evento que lo captura:
+this.$emit(nombre del evento) Veamos con un ejemplo como se codifican los eventos propios en una componente.
+Problema Crear una aplicación que muestre 3 componentes de la clase &amp;lsquo;selector-numerico&amp;rsquo;. En la instancia Vue mostrar la suma de los tres selectores numéricos.</description>
+    </item><item>
+      <title>26 Componentes:anidamiento de componentes</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/10/</link>
+      <pubDate>Fri, 07 Aug 2020 20:28:04 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/10/</guid>
+      <description>Hasta ahora hemos probado de definir componentes y que dependan directamente de la instancia Vue. Veremos que una componente puede definir en su &amp;lsquo;template&amp;rsquo; otras componentes.
+Problema Declarar dos componentes: &amp;lsquo;listado-articulos&amp;rsquo; e &amp;lsquo;item-articulo&amp;rsquo;. La componente &amp;lsquo;item-articulo&amp;rsquo; tiene por objetivo mostrar el código, descripción y precio de un único artículo.
+La componente &amp;lsquo;listado-articulos&amp;rsquo; debe definir en su template una instancia de la componente &amp;lsquo;item-articulo&amp;rsquo;. Es decir la componente padre es &amp;lsquo;listado-articulos&amp;rsquo; y la componente hija es &amp;lsquo;item-articulo&amp;rsquo;.</description>
+    </item><item>
+      <title>27 Componentes: montaje dinamico</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/9/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:59 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/9/</guid>
+      <description>En Vue podemos montar las componentes en forma dinámica, es decir que a partir de ciertos eventos mostrar una componente y ocultar otra.
+Si bien se puede con las directivas v-if y v-show mostrar y ocultar componentes hay otra forma de montar una determinada componente mediante la etiqueta component:
+&amp;lt;component v-bind:is=&amp;#34;nombre de la componente&amp;#34;&amp;gt;&amp;lt;/component&amp;gt; Problema Crear dos componentes llamadas &amp;lsquo;articulos&amp;rsquo; y &amp;lsquo;proveedores&amp;rsquo;. Luego en la interfaz visual mediante dos botones indicar cual de las dos componentes se debe ver en la página.</description>
+    </item><item>
+      <title>28 Formato resumido de las directivas v-bind y v-on</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/8/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:56 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/8/</guid>
+      <description>La directiva v-bind: y v-on: pueden resumirse o definir atajos.
+  La forma resumida de v-bind: es solo los dos puntos.
+  La forma resumida de v-on: es @click.
+  Problema   Mostrar una dirección web en un ancla rescatando del modelo la url. Disponer un botón que al ser presionado redirija a otra página.
+  Resolver el problema utilizando formato normal para las directivas y el formato resumido.</description>
+    </item><item>
+      <title>29 Extension Vue Devtools para depuracion de aplicaciones</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/7/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:51 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/7/</guid>
+      <description>Existe una extensión oficial de Vue.js que nos permite cuando estamos desarrollando una aplicación conocer los valores almacenados en el modelo.
+  Esta extensión nos facilita la depuración de nuestra aplicación Vue.
+  Debemos descargar la extensión Vue Devtools de aquí
+  Para el correcto funcionamiento de la extensión debemos ejecutar la aplicación importando el framework Vue.js no reducido:
+vue.js (versión de desarrollo) vue.min.js (versión definitiva con el menor tamaño pero no funciona Vue Devtools) Una vez instalada debemos abrir en el navegador las &amp;ldquo;Herramientas para desarrolladores (por ejemplo Chrome) y consultar el estado del modelo de la aplicación:</description>
+    </item><item>
+      <title>30 Organización tradicional de archivos</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/6/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:47 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/6/</guid>
+      <description>La forma tradicional de organizar el código cuando desarrollamos un sitio es:
+ Archivos HTML Archivos JS Archivos CSS  Ejemplo
+Crear una componente llamada &amp;lsquo;tarjeta&amp;rsquo; que permita mostrar un recuadro con un título y un cuerpo. Organizar todo el proyecto en los tres archivos clásicos.
+pagina1.html
+&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;Prueba Vue&amp;lt;/title&amp;gt;  &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1, shrink-to-fit=no&amp;#34;&amp;gt; &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;estilos.css&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div id=&amp;#34;aplicacion&amp;#34;&amp;gt; &amp;lt;tarjeta titulo=&amp;#34;Título de la tarjeta&amp;#34; ancho=&amp;#34;30%&amp;#34;&amp;gt; &amp;lt;p&amp;gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.</description>
+    </item>
+  </channel>
+</rss>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>1 ¿Que es Vue? &middot; VUE</title>
+  <title>35 Instalar Librerias externas a un proyecto empleando Vue CLI &middot; VUE</title>
   <meta name="description" content="" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
@@ -36,62 +36,184 @@
     <main class="content side-text-padding">
       <article class="post dropcase">
         <header class="post-header">
-          <h1 class="post-title">1 ¿Que es Vue?</h1>
+          <h1 class="post-title">35 Instalar Librerias externas a un proyecto empleando Vue CLI</h1>
           <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
         </header>
         
         
-        <p>Vue es un framework de Javascript progresivo para la generación de interfaces visuales.</p>
-<p>Está pensado para su fácil adopción en aplicaciones pequeñas pero tiene la posibilidad de generar componentes y ser reutilizadas en proyectos medianos y grandes.</p>
-<p>Sus principales competidores son Angular (Google) y React (Facebook), a diferencia de estos Vue no es un desarrollo de una gran empresa pero tiene el apoyo de muchas pequeñas y una gran comunidad.</p>
-<p>Es un proyecto iniciado por Evan You en 2014, dicho autor trabajó en Google para el framework Angular.</p>
-<p>Veamos una aplicación mínima empleando Vue que muestra un mensaje:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;{{mensaje}}&lt;/<span style="color:#f92672">div</span>&gt;
-  
-  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;   
+        <p>Vimos en conceptos anteriores antes de comenzar con Vue CLI que cuando necesitamos hacer ciertas actividades como por ejemplo peticiones Ajax, el core de Vue.js no tiene dichas funcionalidades.</p>
+<p>Cuando utilizamos Vue CLI no hace falta utilizar la etiqueta script para importar las librerías desde un CDN o de un archivo local.</p>
+<p>Lo hacemos con la sintaxis:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+</code></pre></div><p>Esa es la línea donde se importa el core del framework de Vue.</p>
+<p>Vamos a desarrollar un problema para ver los pasos que debemos dar cuando necesitemos librerías externas.</p>
+<h1 id="problema">Problema</h1>
+<p>Confeccionar un proyecto que recupere una respuesta en JSON de la dirección:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">http</span><span style="color:#f92672">:</span><span style="color:#75715e">//scratchya.com.ar/vue/datos.php
+</span><span style="color:#75715e"></span>
+</code></pre></div><p>La estructura del archivo JSON es:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">[
+  {
+    <span style="color:#e6db74">&#34;codigo&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+    <span style="color:#e6db74">&#34;descripcion&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;papas&#34;</span>,
+    <span style="color:#e6db74">&#34;precio&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">12.33</span>
+  },
+  {
+    <span style="color:#e6db74">&#34;codigo&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+    <span style="color:#e6db74">&#34;descripcion&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;manzanas&#34;</span>,
+    <span style="color:#e6db74">&#34;precio&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">54</span>
+  }
+]
 
-  &lt;<span style="color:#f92672">script</span>&gt;
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
-    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
-    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{
-      <span style="color:#a6e22e">mensaje</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hola mundo Vue&#39;</span>
-    }
-  })
-&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
-</code></pre></div><p>&ldquo;hola mundo Vue&rdquo;</p>
-<p>La librería en este caso la estamos descargando de un CDN donde se almacena todo el código Javascript (podemos descargarla en nuestro equipo sin problema):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"> &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;   
-</code></pre></div><p>Una vez importado el framework podemos crear un objeto de la clase Vue y le pasamos como pámetro un objeto literal con dos atributos llamados &lsquo;el&rsquo; y &lsquo;data&rsquo;:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
-    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
-    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{
-      <span style="color:#a6e22e">mensaje</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hola mundo Vue&#39;</span>
-    }
-  })
-</code></pre></div><p>Esos nombres para los atributos no son un capricho, el atributo &lsquo;el&rsquo; hace referencia al &lsquo;id&rsquo; de un elemento HTML definido previamente:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;{{mensaje}}&lt;/<span style="color:#f92672">div</span>&gt;
-</code></pre></div><p>El atributo &lsquo;data&rsquo; es otro objeto literal que definimos un nombre arbitrario llamada &lsquo;mensaje&rsquo; y su valor es un string:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{
-      <span style="color:#a6e22e">mensaje</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hola mundo Vue&#39;</span>
-    }
-</code></pre></div><p>Dentro del elemento HTML div hemos dispuesto entre dobles llaves el nombre del atributo &lsquo;mensaje&rsquo; definido en el objeto &lsquo;app&rsquo; de la clase Vue. El valor se extrae de la propiedad &lsquo;data&rsquo;:</p>
+</code></pre></div><p>Para realizar las peticiones JSON utilizar la librería axios</p>
+<p>Vamos a practicar nuevamente los pasos para crear un proyecto con Vue CLI:</p>
+<ol>
+<li>Creamos el proyecto utilizando Vue CLI desde la línea de comandos de Node.js:</li>
+</ol>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
-   {{<span style="color:#a6e22e">mensaje</span>}}
+<span style="color:#a6e22e">vue</span> <span style="color:#a6e22e">init</span> <span style="color:#a6e22e">webpack</span><span style="color:#f92672">-</span><span style="color:#a6e22e">simple</span> <span style="color:#a6e22e">proyecto004</span>
 
-</code></pre></div><p>Este concepto de recuperar datos del modelo y mostrarlos en la vista con las dobles llaves se llama interpolación.</p>
-<p>Cuando cargamos la página HTML en el navegador podemos comprobar que dentro del div se remplaza la expresión {{mensaje}} por el valor almacenado en la propiedad &lsquo;mensaje&rsquo;.</p>
-<p>Ese proceso de modificar el contenido de página lo hace el framework Vue en forma transparente gracias al objeto &ldquo;app&rdquo; de la clase Vue que creamos, lo logra ya que le pasamos la referencia del id del &lsquo;div&rsquo; y dentro del div definimos la expresión.</p>
+</code></pre></div><ol start="2">
+<li>Descendemos a la carpeta proyecto004 y procedemos a instalar todos los archivos de dependencias de nuestro proyecto:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">cd</span> <span style="color:#a6e22e">proyecto004</span>
+<span style="color:#a6e22e">npm</span> <span style="color:#a6e22e">install</span>
+</code></pre></div><ol start="3">
+<li>Procederemos a borrar de la plantilla que genera Vue CLI todo lo que no necesitamos.</li>
+</ol>
+<p>Abrimos el archivo App.vue localizado en la subcarpeta &lsquo;src&rsquo; y dejamos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">template</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span>{{ <span style="color:#a6e22e">mensaje</span> }}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/template&gt;</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app&#39;</span>,
+  <span style="color:#a6e22e">data</span> () {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">mensaje</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Listado de productos mediante petición Ajax&#39;</span>
+    }
+  }
+}
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">style</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#a6e22e">h1</span> {
+    <span style="color:#a6e22e">text</span><span style="color:#f92672">-</span><span style="color:#a6e22e">decoration</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">underline</span>;
+  }
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/style&gt;</span>
+</code></pre></div><p>Es decir solo hemos dejado en la plantilla de la componente &ldquo;App.vue&rdquo; que se muestre el contenido del atributo &lsquo;mensaje&rsquo;:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>En la sección de estilos definimos que las etiquetas &lsquo;h1&rsquo; deben aparecer subrayadas:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol start="4">
+<li>Si queremos ver si todo funciona hasta este momento antes de comenzar a crear nuestra componente &lsquo;ListadoArticulos.vue&rsquo; podemos ejecutar la aplicación escribiendo en la línea de comandos de Node.js:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">npm</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">dev</span>
+</code></pre></div><p>Se debe abrir el navegador y mostrarse la aplicación.</p>
+<ol start="5">
+<li>Ahora crearemos la componente ListadoArticulos. En la carpeta &lsquo;src&rsquo; creamos una subcarpeta llamada &lsquo;componentes&rsquo; y dentro de ella crearemos el archivo: &lsquo;ListadoArticulos.vue&rsquo;:</li>
+</ol>
+<p>La componente ListadoArticulos.vue tiene la siguiente codificación:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">template</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">table</span> <span style="color:#a6e22e">border</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">thead</span><span style="color:#f92672">&gt;</span>
+          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">tr</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#a6e22e">th</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Código</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/th&gt;&lt;th&gt;Descripción&lt;/th&gt;&lt;th&gt;Precio&lt;/th&gt;&lt;/tr&gt;</span>
+        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/thead&gt;  </span>
+        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">tr</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;articulo in articulos&#34;</span><span style="color:#f92672">&gt;</span>
+          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">td</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">articulo</span>.<span style="color:#a6e22e">codigo</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/td&gt;</span>
+          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">td</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">articulo</span>.<span style="color:#a6e22e">descripcion</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/td&gt;</span>
+          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">td</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">articulo</span>.<span style="color:#a6e22e">precio</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/td&gt;</span>
+       <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/tr&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/table&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/template&gt;</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;axios&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">created</span>() {
+       <span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;http://scratchya.com.ar/vue/datos.php&#39;</span>)
+            .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">respuesta</span>) =&gt; {
+              <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">articulos</span><span style="color:#f92672">=</span><span style="color:#a6e22e">respuesta</span>.<span style="color:#a6e22e">data</span>;
+            })
+  },
+  <span style="color:#a6e22e">data</span>() {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">articulos</span><span style="color:#f92672">:</span> []
+    }
+  }  
+}
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">style</span><span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">table</span> {
+  <span style="color:#a6e22e">border</span><span style="color:#f92672">-</span><span style="color:#a6e22e">collapse</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">collapse</span>;
+  <span style="color:#a6e22e">padding</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0.75</span><span style="color:#a6e22e">rem</span>;
+  <span style="color:#a6e22e">vertical</span><span style="color:#f92672">-</span><span style="color:#a6e22e">align</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">top</span>;
+  <span style="color:#a6e22e">border</span><span style="color:#f92672">-</span><span style="color:#a6e22e">top</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">px</span> <span style="color:#a6e22e">solid</span> <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">dee2e6</span>;  
+}
+
+<span style="color:#a6e22e">tr</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nth</span><span style="color:#f92672">-</span><span style="color:#66d9ef">of</span><span style="color:#f92672">-</span><span style="color:#a6e22e">type</span>(<span style="color:#a6e22e">odd</span>) {
+  <span style="color:#a6e22e">background</span><span style="color:#f92672">-</span><span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">rgba</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.05</span>);
+}
+
+<span style="color:#a6e22e">tr</span><span style="color:#f92672">:</span><span style="color:#a6e22e">hover</span> {
+  <span style="color:#a6e22e">background</span><span style="color:#f92672">-</span><span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">rgba</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.075</span>);
+}
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/style&gt;</span>
+
+</code></pre></div><p>Para poder utilizar la librería axios debemos importarla:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;axios&#39;</span>
+
+</code></pre></div><p>Pero esta librería no está instalada cuando creamos el proyecto con Vue CLI, entonces debemos instalar &lsquo;axios&rsquo; desde la línea de comandos de Node.js:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+<span style="color:#a6e22e">npm</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">axios</span>
+
+</code></pre></div><p><img src="https://www.tutorialesprogramacionya.com/vueya/imagentema/foto017.jpg" alt=""></p>
+<p>Si ahora buscamos en la carpeta &lsquo;node_modules&rsquo; podremos encontrar una subcarpeta llamada &lsquo;axios&rsquo; con la librería lista para que la utilicemos.</p>
+<ol start="6">
+<li>Volvamos a nuestro archivo App.vue y lo modifiquemos para poder consumir la componente &lsquo;ListadoArticulos.vue&rsquo;:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">template</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span>{{ <span style="color:#a6e22e">mensaje</span> }}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;    </span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">listado</span><span style="color:#f92672">-</span><span style="color:#a6e22e">articulos</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#960050;background-color:#1e0010">/listado-articulos&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/template&gt;</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ListadoArticulos</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./componentes/ListadoArticulos.vue&#39;</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#39;listado-articulos&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ListadoArticulos</span>
+  },
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app&#39;</span>,
+  <span style="color:#a6e22e">data</span> () {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">mensaje</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Listado de productos mediante petición Ajax&#39;</span>
+    }
+  }
+}
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+
+<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">style</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#a6e22e">h1</span> {
+    <span style="color:#a6e22e">text</span><span style="color:#f92672">-</span><span style="color:#a6e22e">decoration</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">underline</span>;
+  }
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/style&gt;</span>
+
+</code></pre></div><p>Si ejecutamos la aplicación:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">npm</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">dev</span>
+</code></pre></div><p>!]<a href="https://www.tutorialesprogramacionya.com/vueya/imagentema/foto018.jpg"></a></p>
 
       </article>
       

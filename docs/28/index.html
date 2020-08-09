@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>8 Eventos: v-on:submit &middot; VUE</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://carlos015programacion.github.io/SegundaPrueba/css/concated.min.css" rel="stylesheet">
+  
+  
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="nav-text">VUE</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">8 Eventos: v-on:submit</h1>
+          <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
+        </header>
+        
+        
+        <p>Un evento muy usado es cuando se presiona un control de tipo input (submit) que por defecto toma todos los datos del formulario y los envía a nuestro servidor web.</p>
+<p>Veremos como podemos prevenir el envío y ejecutar algún algoritmo en Javascript mediante Vue.</p>
+<h1 id="problema">Problema</h1>
+<p>Almacenar en un arreglo códigos de artículos, sus descripciones y precios. Mostrar en una tabla HTML los datos y mediante un formulario HTML permitir ingresar nuevos datos en el arreglo.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;
+    &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">border</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+      &lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Código&lt;/<span style="color:#f92672">td</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Descripción&lt;/<span style="color:#f92672">td</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Precio&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+      &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;articulo in articulos&#34;</span>&gt;
+      &lt;<span style="color:#f92672">tr</span>&gt;
+        &lt;<span style="color:#f92672">td</span>&gt;{{articulo.codigo}}&lt;/<span style="color:#f92672">td</span>&gt;
+        &lt;<span style="color:#f92672">td</span>&gt;{{articulo.descripcion}}&lt;/<span style="color:#f92672">td</span>&gt;
+        &lt;<span style="color:#f92672">td</span>&gt;{{articulo.precio}}&lt;/<span style="color:#f92672">td</span>&gt;
+      &lt;/<span style="color:#f92672">tr</span>&gt;
+    &lt;/<span style="color:#f92672">template</span>&gt;
+    &lt;/<span style="color:#f92672">table</span>&gt;    
+    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">v-on:submit</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">prevent</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;agregarArticulo&#34;</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;
+        Ingrese código:&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;number&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;codigo&#34;</span>&gt;
+      &lt;/<span style="color:#f92672">p</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;
+        Ingrese descripción:&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;descripcion&#34;</span>&gt;
+      &lt;/<span style="color:#f92672">p</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;
+        Ingrese precio:&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;precio&#34;</span>&gt;
+      &lt;/<span style="color:#f92672">p</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Agregar&#34;</span>&gt;&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;<span style="color:#f92672">script</span>&gt;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+      <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{ 
+        <span style="color:#a6e22e">codigo</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
+        <span style="color:#a6e22e">descripcion</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
+        <span style="color:#a6e22e">precio</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
+        <span style="color:#a6e22e">articulos</span><span style="color:#f92672">:</span> [{
+          <span style="color:#a6e22e">codigo</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,
+          <span style="color:#a6e22e">descripcion</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;papas&#39;</span>,
+          <span style="color:#a6e22e">precio</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">34</span>
+        }]
+      },
+      <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">agregarArticulo</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">articulos</span>.<span style="color:#a6e22e">push</span>({
+                                <span style="color:#a6e22e">codigo</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codigo</span>,
+                                <span style="color:#a6e22e">descripcion</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">descripcion</span>,
+                                <span style="color:#a6e22e">precio</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">precio</span>
+                              });
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codigo</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">descripcion</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">precio</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        }
+      }
+    })
+  &lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+
+</code></pre></div><table>
+<thead>
+<tr>
+<th>Codigo</th>
+<th>Descripción</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>papas</td>
+<td>34</td>
+</tr>
+</tbody>
+</table>
+<p>Ingrese codigo : <code>       </code></p>
+<p>Ingrese descripción : <code>     </code></p>
+<p>Ingrese precio : <code>      </code></p>
+<p><code>Enviar</code></p>
+<p>La tabla HTML donde se muestran los datos aparece con una fila de datos debido a que el arreglo lo definimos con una componente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+        <span style="color:#a6e22e">articulos</span><span style="color:#f92672">:</span> [{
+          <span style="color:#a6e22e">codigo</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,
+          <span style="color:#a6e22e">descripcion</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;papas&#39;</span>,
+          <span style="color:#a6e22e">precio</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">34</span>
+        }]
+</code></pre></div><p>Luego en la vista mediante la directiva v-for mostramos el contenido del arreglo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+    &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">border</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+      &lt;<span style="color:#f92672">tr</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Código&lt;/<span style="color:#f92672">td</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Descripción&lt;/<span style="color:#f92672">td</span>&gt;&lt;<span style="color:#f92672">td</span>&gt;Precio&lt;/<span style="color:#f92672">td</span>&gt;&lt;/<span style="color:#f92672">tr</span>&gt;
+      &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;articulo in articulos&#34;</span>&gt;
+      &lt;<span style="color:#f92672">tr</span>&gt;
+        &lt;<span style="color:#f92672">td</span>&gt;{{articulo.codigo}}&lt;/<span style="color:#f92672">td</span>&gt;
+        &lt;<span style="color:#f92672">td</span>&gt;{{articulo.descripcion}}&lt;/<span style="color:#f92672">td</span>&gt;
+        &lt;<span style="color:#f92672">td</span>&gt;{{articulo.precio}}&lt;/<span style="color:#f92672">td</span>&gt;
+      &lt;/<span style="color:#f92672">tr</span>&gt;
+    &lt;/<span style="color:#f92672">template</span>&gt;
+    &lt;/<span style="color:#f92672">table</span>&gt;    
+
+</code></pre></div><p>Para prevenir que cuando se presione el botón de tipo submit se recargue la página debemos capturar el evento v-on:submit.prevent:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">v-on:submit</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">prevent</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;agregarArticulo&#34;</span>&gt;
+</code></pre></div><p>Con v-on:submit capturamos el evento pero no prevenimos que se envíen los datos al servidor y por lo tanto se recargue la página.</p>
+<p>Para agregar un elemento a nuestro arreglo hemos llamado al método &ldquo;agregarArticulo&rdquo; cuyo algoritmo crea un objeto y lo añade al arreglo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+        <span style="color:#a6e22e">agregarArticulo</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">articulos</span>.<span style="color:#a6e22e">push</span>({
+                                <span style="color:#a6e22e">codigo</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codigo</span>,
+                                <span style="color:#a6e22e">descripcion</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">descripcion</span>,
+                                <span style="color:#a6e22e">precio</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">precio</span>
+                              });
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codigo</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">descripcion</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">precio</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        }
+        
+</code></pre></div><p>Además borramos el contenido de los tres controles de tipo input modificando las propiedades del modelo. Recordemos que tenemos una asociación bidireccional entre la vista y el modelo, cualquier cambio en el modelo de datos se actualiza inmediatamente en la vista como vemos que sucede al agregar elementos al vector o borrar los contenidos de codigo, descripcion y precio.</p>
+
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/27/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">9 Formularios:controles radio</h2>
+    <p class="card-text">Veremos como administrar en Vue un conjunto de controles input (radio) para identificar la opción seleccionada.
+Para trabajar un conjunto de controles radio debemos definir en el modelo de datos una única propiedad que almacenará el valor de la seleccionada.
+Es importante decir que debemos fijar en el modelo cual es la que se encuentra seleccionada inicialmente, no rescata los valores iniciales definidos en un control como podría ser:
+&lt;input checked type=&#34;radio&#34; value=&#34;universitarios&#34; v-model=&#34;estudios&#34; id=&#34;universitarios&#34;&gt; Luego deberíamos iniciar el modelo:  estudios: &#39;universitarios&#39;  Problema Crear cuatro controles de tipo radio que permitan seleccionar que tipo de estudios tiene el visitante.</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-08-07 87:00">Aug 7, 2020</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/" class="card home-card" style="background-image: url( https://carlos015programacion.github.io/SegundaPrueba/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://carlos015programacion.github.io/SegundaPrueba/js/core.min.js"></script>
+
+  </body>
+</html>

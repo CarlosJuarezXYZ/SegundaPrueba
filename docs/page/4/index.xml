@@ -1,0 +1,60 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VUE</title>
+    <link>https://carlos015programacion.github.io/SegundaPrueba/</link>
+    <description>Recent content on VUE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    
+        <atom:link href="https://carlos015programacion.github.io/SegundaPrueba/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>31 Herramientas:Node.js</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/5/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:42 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/5/</guid>
+      <description>La primer herramienta a instalar será Node.js, esto debido a que gran cantidad de programas para el desarrollo en Vue.js están implementadas en Node.
+Lo primero que haremos es descargar e instalar la última versión estable de Node.js:
+Una vez instalado Node.js desde la línea de comandos del mismo podemos comprobar su correcto funcionamiento averiguando su versión:</description>
+    </item><item>
+      <title>32 Herramientas:Vue CLI</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/4/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:37 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/4/</guid>
+      <description>Vue CLI (Command Line Interface - Interfaz de línea de comandos) es un programa desarrollado en Node.js para el desarrollo rápido de proyectos con Vue.js
+Vue CLI pretende ser la línea base de herramientas estándar para el ecosistema Vue.
+Esta herramienta automatiza desde la creación de todos los archivos necesarios hasta la configuración y actualización de dependencias.
+Instalación de Vue CLI Desde la línea de comandos de Node.js procedemos a instalarlo mediante el comando:</description>
+    </item><item>
+      <title>33 Herramientas:webpack</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/3/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:30 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/3/</guid>
+      <description>Vue propone implementar las componentes en un único archivo con extensión *.vue y cuyo contenido sea el template con el HTML de la componente, su lógica en Javascript con el framework Vue y la hoja de estilo.
+Los archivos *.vue no pueden ser interpretados por un navegador por lo que necesitamos un programa que los procese de tal forma que queden legibles para navegadores. Esta actividad la resolvemos utilizando webpack.</description>
+    </item><item>
+      <title>34 Archivos.Vue(Single File Components)</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/2/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:25 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/2/</guid>
+      <description>Hemos dicho en forma reiterada que Vue propone descomponer una aplicación en componentes.
+Utilizamos Vue CLI para facilitar tener el esqueleto básico de nuestra aplicación. Veremos en este concepto los pasos para crear una componente y consumirla desde la componente principal App.vue.
+Problema Crear una componente &amp;lsquo;CartaPoker.vue&amp;rsquo; y utilizar Vue CLI para crear el proyecto y almacenar la componente en un archivo *.vue
+ Creamos el proyecto utilizando Vue CLI:  vue init webpack-simple proyecto003 Descendemos a la carpeta proyecto003 y procedemos a instalar todos los archivos de dependencias de nuestro proyecto:  cd proyecto003 npm install Procederemos a borrar de la plantilla que genera Vue CLI todo lo que no necesitamos.</description>
+    </item><item>
+      <title>35 Instalar Librerias externas a un proyecto empleando Vue CLI</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/1/</link>
+      <pubDate>Fri, 07 Aug 2020 20:27:11 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/1/</guid>
+      <description>Vimos en conceptos anteriores antes de comenzar con Vue CLI que cuando necesitamos hacer ciertas actividades como por ejemplo peticiones Ajax, el core de Vue.js no tiene dichas funcionalidades.
+Cuando utilizamos Vue CLI no hace falta utilizar la etiqueta script para importar las librerías desde un CDN o de un archivo local.
+Lo hacemos con la sintaxis:
+import Vue from &amp;#39;vue&amp;#39; Esa es la línea donde se importa el core del framework de Vue.</description>
+    </item>
+  </channel>
+</rss>

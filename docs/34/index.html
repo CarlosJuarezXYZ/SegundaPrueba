@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>2 Directivas en Vue &middot; VUE</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://carlos015programacion.github.io/SegundaPrueba/css/concated.min.css" rel="stylesheet">
+  
+  
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="nav-text">VUE</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">2 Directivas en Vue</h1>
+          <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
+        </header>
+        
+        
+        <p>Una directiva es un atributo de un elemento HTML que luego va a interpretar el framework Vue.</p>
+<p>Las directivas siempre comienzan con los caracteres &ldquo;v-&rdquo; y son ejemplos de directivas:</p>
+<ul>
+<li>v-bind</li>
+<li>v-model</li>
+<li>v-if</li>
+<li>v-else</li>
+<li>v-for</li>
+</ul>
+<p>Existen muchas más pero nombramos estas que serán las que primero utilizaremos.</p>
+<p>Veamos como se define una directiva en un elemento HTML:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nombre&#34;</span>&gt;
+
+</code></pre></div><p>La directiva v-model asocia el dato que se ingresa en el control &ldquo;input&rdquo; con un atributo del modelo de datos que debe definirse luego en Javascript:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+      <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{ 
+        <span style="color:#a6e22e">nombre</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>
+      }
+    })
+</code></pre></div><p>El atributo &ldquo;data&rdquo; tiene un atributo llamado &ldquo;nombre&rdquo; que coincide con el valor almacenado en la directiva v-model. Esta directiva asocia en forma bidireccional la parte visual (nuestro control input) y nuestro modelo de datos.</p>
+<p>Cualquier cambio que produzca el usuario ingresando información en el control input luego se refleja en el atributo &ldquo;nombre&rdquo; del objeto Vue. Lo mismo sucede con cualquier cambio que se provoque en el atributo &ldquo;nombre&rdquo; luego se refleja en el control input.</p>
+<p>Si disponemos un valor inicial en el atributo nombre luego se refleja en el input:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+      <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{ 
+        <span style="color:#a6e22e">nombre</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Juan&#39;</span>
+      }
+    })
+</code></pre></div><p>La página completa de este problema es:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;
+    Ingrese su nombre:
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nombre&#34;</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;{{nombre}}&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;   
+
+  &lt;<span style="color:#f92672">script</span>&gt;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+      <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span>{ 
+        <span style="color:#a6e22e">nombre</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>
+      }
+    })
+  &lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Ingrese su nombre : <code>               </code></p>
+<p>Para ver este cambio en tiempo real hemos dispuesto en la vista que se muestre el valor de la propiedad &ldquo;nombre&rdquo; del modelo de datos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#f92672">p</span>&gt;{{nombre}}&lt;/<span style="color:#f92672">p</span>&gt;
+</code></pre></div><p>Ahora cuando ejecutamos la página al ingresar un caracter en el control HTML input inmediatamente Vue detecta dicho caracter y lo almacena en el atributo &ldquo;nombre&rdquo;, pero también actualiza la vista donde hemos dispuesto {{nombre}}.</p>
+<p>Todo el proceso de comunicación bidireccional lo hace el framework Vue en forma transparente para nosotros.</p>
+
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/33/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">3 Directivas v-if,v-else-if,v-show</h2>
+    <p class="card-text">Dijimos anteriormente que Vue utiliza el concepto de directivas para una comunicación entre la vista (HTML) y el modelo (programa en Javascript)
+La primer directiva condicional que veremos se llama v-if y me permite definir una condición que dependiendo de su resultado luego la etiqueta HTML o conjunto de etiquetas se muestran o no.
+Problema Ingresar una edad en un control de tipo input (number) y mostrar un mensaje si se ingresa un valor mayor o igual a 18.</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-08-07 87:00">Aug 7, 2020</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/" class="card home-card" style="background-image: url( https://carlos015programacion.github.io/SegundaPrueba/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://carlos015programacion.github.io/SegundaPrueba/js/core.min.js"></script>
+
+  </body>
+</html>

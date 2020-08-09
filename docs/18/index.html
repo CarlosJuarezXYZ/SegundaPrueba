@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>18 Componentes en Vue &middot; VUE</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://carlos015programacion.github.io/SegundaPrueba/css/concated.min.css" rel="stylesheet">
+  
+  
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="nav-text">VUE</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">18 Componentes en Vue</h1>
+          <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
+        </header>
+        
+        
+        <p>La componentes son una de las características fundamentales de Vue. Ayudan a extender las características básicas de las etiquetas HTML y encapsular código.
+Una componente es generalmente una nueva etiqueta con una interfaz y comportamiento particular.</p>
+<p>Veremos primero la sintaxis mínima necesaria para declarar y utilizar una componente básica con Vue.</p>
+<h1 id="problema">Problema</h1>
+<p>Declarar una componente que muestre el mensaje &ldquo;Hola Mundo&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+<span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;
+    &lt;<span style="color:#f92672">hola-mundo</span>&gt;&lt;/<span style="color:#f92672">hola-mundo</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+ 
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+&lt;<span style="color:#f92672">script</span>&gt;
+  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;hola-mundo&#39;</span>, {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`&lt;p&gt;
+</span><span style="color:#e6db74">                 Hola mundo
+</span><span style="color:#e6db74">              &lt;/p&gt;`</span>
+  });
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>
+  });
+&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+
+</code></pre></div><p>Hemos implementado la componente más sencilla que se pueda desarrollar con Vue. Seguramente lo mejor en este caso es escribir drectamente HTML que muestre el mensaje directo sin crear componentes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+&lt;<span style="color:#f92672">p</span>&gt;Hola mundo&lt;/<span style="color:#f92672">p</span>&gt;
+
+</code></pre></div><p>Lo primero que tenemos que hacer para crear una componente en Vue es llamar al método component y pasarle como primer parámetro el nombre de la componente y luego debemos iniciar obligatoriamente la propiedad &lsquo;template&rsquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;hola-mundo&#39;</span>, {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`&lt;p&gt;
+</span><span style="color:#e6db74">                 Hola mundo
+</span><span style="color:#e6db74">              &lt;/p&gt;`</span>
+  });
+
+</code></pre></div><p>Recién luego de crear la componente debemos crear la instancia de la clase Vue:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span><span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#aplicacion&#39;</span>
+  });
+
+</code></pre></div><p>En la vista de la página creamos una componente utilizando la nueva etiqueta creada con el método component de la clase Vue:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+    &lt;<span style="color:#f92672">hola-mundo</span>&gt;&lt;/<span style="color:#f92672">hola-mundo</span>&gt;
+</code></pre></div><p>En la propiedad template definimos que se debe mostrar con la etiqueta &lsquo;hola-mundo&rsquo;.</p>
+<p>El lugar donde declaramos la etiqueta &lsquo;hola-mundo&rsquo; se remplaza por el contenido de la propiedad &lsquo;template&rsquo; de la componente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+&lt;<span style="color:#f92672">p</span>&gt;
+ Hola mundo
+&lt;/<span style="color:#f92672">p</span>&gt;
+
+</code></pre></div><p>El resultado en el navegador tenemos el mensaje:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">Hola mundo
+</code></pre></div><p>Algo importante que hay que tener en cuenta con la propiedad template es que siempre debe haber una etiqueta raiz y dentro de ella puede haber otras etiquetas HTML:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    template: &lt;<span style="color:#f92672">p</span>&gt;
+                 Hola mundo
+              &lt;/<span style="color:#f92672">p</span>&gt;
+
+</code></pre></div><h1 id="acotación">Acotación</h1>
+<p>En Javascript para definir string de múltiples lineas utilizamos el caracter de comillas especial</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+    template: &lt;<span style="color:#f92672">p</span>&gt;
+                 Hola mundo
+              &lt;/<span style="color:#f92672">p</span>&gt; 
+</code></pre></div><p>Con comillas comunes debemos concatenar todas las líneas:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    template:  &lt;<span style="color:#f92672">div</span>&gt;&lt;<span style="color:#f92672">p</span>&gt;Programa: xxxxxxxx&lt;/<span style="color:#f92672">p</span>&gt; +
+               &lt;<span style="color:#f92672">p</span>&gt;Versión: xx&lt;/<span style="color:#f92672">p</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+
+</code></pre></div>
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/17/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">19 Componentes Propiedades </h2>
+    <p class="card-text">Vimos en el concepto anterior que una característica fundamental de Vue es la posibilidad de definir componentes y ser reutilizadas.
+Una componente puede definir propiedades y pasarle valores a las mismas cuando definimos etiquetas:
+&lt;hola-mundo idioma=&#34;ingles&#34;&gt;&lt;/hola-mundo&gt; En la etiqueta ‘hola-mundo’ pasamos la propiedad ‘idioma’ con el valor ‘ingles’. Esto es lo que ya usamos en HTML para informar a la etiqueta valores que debe tener en cuenta.
+Veamos ahora como una componente en Vue define y almacena el valor de la propiedad:</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-08-07 87:00">Aug 7, 2020</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/" class="card home-card" style="background-image: url( https://carlos015programacion.github.io/SegundaPrueba/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://carlos015programacion.github.io/SegundaPrueba/js/core.min.js"></script>
+
+  </body>
+</html>

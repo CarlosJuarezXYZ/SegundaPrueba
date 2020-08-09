@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>29 Extension Vue Devtools para depuracion de aplicaciones &middot; VUE</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://carlos015programacion.github.io/SegundaPrueba/css/concated.min.css" rel="stylesheet">
+  
+  
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="nav-text">VUE</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">29 Extension Vue Devtools para depuracion de aplicaciones</h1>
+          <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
+        </header>
+        
+        
+        <p>Existe una extensión oficial de Vue.js que nos permite cuando estamos desarrollando una aplicación conocer los valores almacenados en el modelo.</p>
+<ul>
+<li>
+<p>Esta extensión nos facilita la depuración de nuestra aplicación Vue.</p>
+</li>
+<li>
+<p>Debemos descargar la extensión Vue Devtools de aquí</p>
+</li>
+</ul>
+<p>Para el correcto funcionamiento de la extensión debemos ejecutar la aplicación importando el framework Vue.js no reducido:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">vue</span>.<span style="color:#a6e22e">js</span>  (<span style="color:#a6e22e">versión</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">desarrollo</span>)
+<span style="color:#a6e22e">vue</span>.<span style="color:#a6e22e">min</span>.<span style="color:#a6e22e">js</span>  (<span style="color:#a6e22e">versión</span> <span style="color:#a6e22e">definitiva</span> <span style="color:#a6e22e">con</span> <span style="color:#a6e22e">el</span> <span style="color:#a6e22e">menor</span> <span style="color:#a6e22e">tamaño</span> <span style="color:#a6e22e">pero</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">funciona</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">Devtools</span>)
+</code></pre></div><p>Una vez instalada debemos abrir en el navegador las &ldquo;Herramientas para desarrolladores (por ejemplo Chrome) y consultar el estado del modelo de la aplicación:</p>
+<p><img src="https://www.tutorialesprogramacionya.com/vueya/imagentema/foto002.jpg" alt="Prueba Vue"></p>
+<p>Si importa el framework de un CDN instale la versión completa de desarrollo, esto hace que funcione la extensión:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><p>Una vez instalada verifique que la extensión tenga habilitada el acceso de URL de archivo:</p>
+<p><img src="https://www.tutorialesprogramacionya.com/vueya/imagentema/foto003.jpg" alt=""></p>
+<p>Podemos luego con las Vue Devtools modificar datos del modelo cuando se está ejecutando la aplicación:</p>
+<p><img src="https://www.tutorialesprogramacionya.com/vueya/imagentema/foto004.jpg" alt=""></p>
+
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/6/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">30 Organización tradicional de archivos</h2>
+    <p class="card-text">La forma tradicional de organizar el código cuando desarrollamos un sitio es:
+ Archivos HTML Archivos JS Archivos CSS  Ejemplo
+Crear una componente llamada ‘tarjeta’ que permita mostrar un recuadro con un título y un cuerpo. Organizar todo el proyecto en los tres archivos clásicos.
+pagina1.html
+&lt;!doctype html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Prueba Vue&lt;/title&gt;  &lt;meta charset=&#34;utf-8&#34;&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;&gt; &lt;link rel=&#34;stylesheet&#34; href=&#34;estilos.css&#34;&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;aplicacion&#34;&gt; &lt;tarjeta titulo=&#34;Título de la tarjeta&#34; ancho=&#34;30%&#34;&gt; &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-08-07 87:00">Aug 7, 2020</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/" class="card home-card" style="background-image: url( https://carlos015programacion.github.io/SegundaPrueba/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://carlos015programacion.github.io/SegundaPrueba/js/core.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>22 Componentes:ubicación del valor de la propiedad template &middot; VUE</title>
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://carlos015programacion.github.io/SegundaPrueba/css/concated.min.css" rel="stylesheet">
+  
+  
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="nav-text">VUE</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://carlos015programacion.github.io/SegundaPrueba/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">22 Componentes:ubicación del valor de la propiedad template</h1>
+          <p class="post-date">Posted <time datetime="2020-08-07">Aug 7, 2020</time></p>
+        </header>
+        
+        
+        <p>Hasta ahora hemos visto que toda componente debe definir la propiedad &lsquo;template&rsquo; con los elementos HTML que representan la interfaz visual de la misma.</p>
+<p>Normalmente como dicho valor requiere varias líneas lo más común es utilizar las comillas oblicuas <code>.....</code> que nos permiten crear string de varias líneas.</p>
+<p>Si tenemos una componente que requiere un template muy largo la metodología de definir el valor del template directamente luego de la propiedad puede ser un poco engorroso. Veremos otras formas donde ubicar la definición del template.</p>
+<h1 id="problema">Problema</h1>
+<p>Crear una componente llamada &lsquo;dias-semana&rsquo; que defina una propiedad llamada &lsquo;seleccionado&rsquo;. El objetivo de la misma es mostrar todos los días de la semana en una misma línea y con un color distinto aquel que coincide con el valor de la propiedad &lsquo;seleccionado&rsquo;.
+Definir el valor del atributo &lsquo;template&rsquo; fuera de la clase.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;
+    &lt;<span style="color:#f92672">dias-semana</span> <span style="color:#a6e22e">seleccionado</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sábado&#34;</span>&gt;&lt;/<span style="color:#f92672">dias-semana</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+
+
+&lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dias-semana&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display: flex; flex-direction:row;justify-content:space-between;background:#ff0;font-size:1.5rem&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dia in dias&#34;</span>&gt;
+      &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;seleccionado==dia&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background:#000;color:#fff&#34;</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+      &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-else</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">template</span>&gt;
+
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span>&gt;
+  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;dias-semana&#39;</span>,{
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;seleccionado&#39;</span>],
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#dias-semana&#39;</span>,
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+      <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">dias</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;lunes&#39;</span>,<span style="color:#e6db74">&#39;martes&#39;</span>,<span style="color:#e6db74">&#39;miércoles&#39;</span>,<span style="color:#e6db74">&#39;jueves&#39;</span>,<span style="color:#e6db74">&#39;viernes&#39;</span>,<span style="color:#e6db74">&#39;sábado&#39;</span>,<span style="color:#e6db74">&#39;domingo&#39;</span>]
+      }
+    }
+  });
+
+  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#aplicacion&#39;</span>
+  })
+
+&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Cuando declaramos la componente en la propiedad &lsquo;template&rsquo; almacenamos un id del template creado previamente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;dias-semana&#39;</span>,{
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;seleccionado&#39;</span>],
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#dias-semana&#39;</span>,
+</code></pre></div><p>El template se lo crea como cualquier etiqueta HTML, como no es una propia de HTML el navegador no la tiene en cuenta, pero Vue la puede localizar luego:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dias-semana&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display: flex; flex-direction:row;justify-content:space-between;background:#ff0;font-size:1.5rem&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dia in dias&#34;</span>&gt;
+      &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;seleccionado==dia&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background:#000;color:#fff&#34;</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+      &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-else</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">template</span>&gt;
+</code></pre></div><p>El objeto es dejar más ordenada la creación de la componente separando la plantilla visual de la misma.</p>
+<p>Si ejecutamos esta aplicación tenemos:</p>
+<pre><code>Lunes Martes Miercoles Jueves Viernes *Sabado* Domingo
+
+</code></pre><p>Una tercer forma de ubicar el template es definirlo dentro de una etiqueta script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dias-semana&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/template&#34;</span>&gt;
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display: flex; flex-direction:row;justify-content:space-between;background:#ff0;font-size:1.5rem&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dia in dias&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">span</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;seleccionado==dia&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background:#000;color:#fff&#34;</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">dia</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/span&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">span</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">else</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">dia</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/span&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+&lt;/<span style="color:#f92672">script</span>&gt;
+
+</code></pre></div><p>Luego no debemos hacer ningún cambio en la componente ya que en la misma hacemos referencia a la propiedad id:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;dias-semana&#39;</span>,{
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;seleccionado&#39;</span>],
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#dias-semana&#39;</span>,
+</code></pre></div><p>Una cuarta forma de ubicar el valor del template es hacerlo directamente entre las etiquetas de comienzo y fin:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Prueba Vue&lt;/<span style="color:#f92672">title</span>&gt; 
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aplicacion&#34;</span>&gt;
+    &lt;<span style="color:#f92672">dias-semana</span> <span style="color:#a6e22e">seleccionado</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sábado&#34;</span> <span style="color:#a6e22e">inline-template</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display: flex; flex-direction:row;justify-content:space-between;background:#ff0;font-size:1.5rem&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dia in dias&#34;</span>&gt;
+          &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;seleccionado==dia&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background:#000;color:#fff&#34;</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+          &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-else</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;              
+    &lt;/<span style="color:#f92672">dias-semana</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+
+
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/vue&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span>&gt;
+  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;dias-semana&#39;</span>,{
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;seleccionado&#39;</span>],
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+      <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">dias</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;lunes&#39;</span>,<span style="color:#e6db74">&#39;martes&#39;</span>,<span style="color:#e6db74">&#39;miércoles&#39;</span>,<span style="color:#e6db74">&#39;jueves&#39;</span>,<span style="color:#e6db74">&#39;viernes&#39;</span>,<span style="color:#e6db74">&#39;sábado&#39;</span>,<span style="color:#e6db74">&#39;domingo&#39;</span>]
+      }
+    }
+  });
+
+  <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;#aplicacion&#39;</span>
+  })
+
+&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Con esta metodología no disponemos la propiedad &lsquo;template&rsquo; dentro de la creación de la componente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+  <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;dias-semana&#39;</span>,{
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;seleccionado&#39;</span>],
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+      <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">dias</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;lunes&#39;</span>,<span style="color:#e6db74">&#39;martes&#39;</span>,<span style="color:#e6db74">&#39;miércoles&#39;</span>,<span style="color:#e6db74">&#39;jueves&#39;</span>,<span style="color:#e6db74">&#39;viernes&#39;</span>,<span style="color:#e6db74">&#39;sábado&#39;</span>,<span style="color:#e6db74">&#39;domingo&#39;</span>]
+      }
+    }
+  });
+
+</code></pre></div><p>Pero en el HTML donde creamos la componente especificamos el &lsquo;template&rsquo; propiamente dicho para nuestra componente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#f92672">dias-semana</span> <span style="color:#a6e22e">seleccionado</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sábado&#34;</span> <span style="color:#a6e22e">inline-template</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display: flex; flex-direction:row;justify-content:space-between;background:#ff0;font-size:1.5rem&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dia in dias&#34;</span>&gt;
+          &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;seleccionado==dia&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background:#000;color:#fff&#34;</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+          &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">v-else</span>&gt;{{dia}}&lt;/<span style="color:#f92672">span</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;              
+    &lt;/<span style="color:#f92672">dias-semana</span>&gt;
+Es importante definir la propiedad inline-template cuando creamos la componente.
+
+</code></pre></div>
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/13/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">23 Componentes:slot</h2>
+    <p class="card-text">La interfaz de una componente la podemos transformar mediante datos que le enviamos a sus propiedades y también veremos ahora que el contenido del ‘template’ puede ser modificado mediante el concepto de ‘slot’.
+Los slot (espacio) se los declara dentro del template de la componente y son espacios que pueden ser redefinidos cuando definimos una componente en el HTML.
+Problema Crear una componente que muestre dos botones ‘confirmar’, ‘cancelar’ y un hipervínculo.</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-08-07 87:00">Aug 7, 2020</time></p>
+      
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://carlos015programacion.github.io/SegundaPrueba/" class="card home-card" style="background-image: url( https://carlos015programacion.github.io/SegundaPrueba/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://carlos015programacion.github.io/SegundaPrueba/js/core.min.js"></script>
+
+  </body>
+</html>
