@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VUE</title>
+    <link>https://carlos015programacion.github.io/SegundaPrueba/</link>
+    <description>Recent content on VUE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    
+	<atom:link href="https://carlos015programacion.github.io/SegundaPrueba/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1 ¿Que es Vue?</title>
+      <link>https://carlos015programacion.github.io/SegundaPrueba/1/</link>
+      <pubDate>Fri, 07 Aug 2020 20:29:46 -0500</pubDate>
+      
+      <guid>https://carlos015programacion.github.io/SegundaPrueba/1/</guid>
+      <description>Vue es un framework de Javascript progresivo para la generación de interfaces visuales.
+Está pensado para su fácil adopción en aplicaciones pequeñas pero tiene la posibilidad de generar componentes y ser reutilizadas en proyectos medianos y grandes.
+Sus principales competidores son Angular (Google) y React (Facebook), a diferencia de estos Vue no es un desarrollo de una gran empresa pero tiene el apoyo de muchas pequeñas y una gran comunidad.</description>
+    </item>
+    
+  </channel>
+</rss>
