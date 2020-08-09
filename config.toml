@@ -1,6 +1,6 @@
-baseURL = "https://carlos015programacion.github.io/SegundaPrueba/"
+baseURL = "https://carlos015programacion.github.io/SegundaPrueba/" 
 languageCode = "es"
 title = "VUE"
-theme = "tale"
+theme = "aether"
 
 
